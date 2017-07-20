@@ -6,3 +6,5 @@ In order to run this 'project' you'll need to download the EMNIST data set, avai
 This classifier was trainined on the byclass subset in the Matlab format. 
 
 For more information, refer to: https://arxiv.org/abs/1702.05373
+
+Currently sitting at around 86% accuracy.
