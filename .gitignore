@@ -46,6 +46,9 @@ coverage.xml
 *.cover
 .hypothesis/
 
+# macOS
+*.DS_Store
+
 # Translations
 *.mo
 *.pot
@@ -102,3 +105,6 @@ ENV/
 
 # matlab
 *.mat
+
+# mlmodel
+*.mlmodel
