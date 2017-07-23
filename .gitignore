@@ -47,7 +47,7 @@ coverage.xml
 .hypothesis/
 
 # macOS
-*.DS_Store
+.DS_Store
 
 # Translations
 *.mo

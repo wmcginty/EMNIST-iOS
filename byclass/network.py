@@ -2,7 +2,7 @@ from keras.layers import MaxPooling2D, Convolution2D, Dropout, Dense, Flatten
 from keras.models import Sequential
 from keras.utils import np_utils
 
-def trainNetwork(model, training_data, width=28, height=28, epochs=2, verbose=False):
+def trainNetwork(model, training_data, width=28, height=28, epochs=1, verbose=False):
 
     # Initialize data
     (x_train, y_train), (x_test, y_test), mapping = training_data
