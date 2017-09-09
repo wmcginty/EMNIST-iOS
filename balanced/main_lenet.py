@@ -4,26 +4,25 @@ from shared.convert import convertModel
 from shared.persist import loadModelNamed
 from shared.persist import saveModel
 from shared.training_data import loadDataFromFile
+from shared.train import testNetwork
 
-print("Loading training data...")
-training_data = loadDataFromFile("emnist-balanced.mat")
+modelName = "LeNet"
+dataName = "emnist-balanced.mat"
 
-model = loadModelNamed("EMNIST")
+print("Beginning train/test cycle for " + modelName +" on " + dataName)
+training_data = loadDataFromFile(dataName)
+
+model = loadModelNamed(modelName)
 if model is None:
-
-    #The length of 'mapping' is the number of classes in our training data
     _, _, mapping = training_data
+    model = buildNetwork(len(mapping)) #The length of 'mapping' is the number of classes in our training data
 
-    print ("Model could not be loaded. Building network...")
-    model = buildNetwork(len(mapping))
+trainNetwork(model, training_data=training_data, batch_size=64, epochs=10)
+results = testNetwork(model, training_data=training_data)
+print("Test score: " + results[0])
+print("Test accuracy: " + results[1] * 100 + "%")
 
-print("Model loaded. Beginning training...")
-trainNetwork(model, training_data=training_data, batch_size=64, epochs=25, runs=4)
-
-print("Saving model (including weights)...")
-saveModel(model, "EMNIST")
-
-print("Converting to .mlmodel for iOS use...")
-convertModel(model, title="EMNISTClassifier",
+saveModel(model, modelName)
+convertModel(model, title=modelName + results[1],
              description="An alphanumeric classifier trained on the EMNIST data set.",
              class_labels="labels.txt")
