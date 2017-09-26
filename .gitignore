@@ -108,3 +108,6 @@ ENV/
 
 # mlmodel
 *.mlmodel
+
+# results
+/Results/
